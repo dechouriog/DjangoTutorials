@@ -1,0 +1,16 @@
+{% extends "pages/base.html" %}
+{% block title %}Photo Gallery{% endblock %}
+
+{% block content %}
+<h1>Photo Gallery</h1>
+<div style="display: flex; flex-wrap: wrap; gap: 10px;">
+    {% for photo in photos %}
+        <div>
+            <img src="{{ photo.image.url }}" alt="{{ photo.title }}" style="max-width: 200px;">
+            <p>{{ photo.title }}</p>
+        </div>
+    {% empty %}
+        <p>No photos uploaded yet.</p>
+    {% endfor %}
+</div>
+{% endblock %}

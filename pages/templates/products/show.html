@@ -1,0 +1,43 @@
+{% extends 'pages/base.html' %}
+
+{% block title %}
+  {{ title }}
+{% endblock %}
+
+{% block header_title %}
+  {{ subtitle }}
+{% endblock %}
+
+{% block content %}
+<div class="card mb-3">
+  <div class="row g-0">
+    <div class="col-md-4">
+      <img
+        src="https://static.djangoproject.com/img/logos/django-logo-positive.svg"
+        class="img-fluid rounded-start"
+      />
+    </div>
+    <div class="col-md-8">
+      <div class="card-body">
+        <h5 class="card-title">{{ product.name }}</h5>
+        <p class="card-text">{{ product.description }}</p>
+
+        {% if product.price > 2000 %}
+          <p class="card-text" style="color: red">${{ product.price }}</p>
+        {% else %}
+          <p class="card-text">${{ product.price }}</p>
+        {% endif %}
+
+        <hr>
+        <h6>Comments:</h6>
+        {% for comment in product.comment_set.all %}
+          <p>– {{ comment.description }}</p>
+        {% empty %}
+          <p>No comments for this product.</p>
+        {% endfor %}
+        
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
